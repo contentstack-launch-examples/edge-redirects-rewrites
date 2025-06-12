@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Hide development indicators and overlays */
+#__next-build-watcher,
+[data-nextjs-dialog-overlay],
+[data-nextjs-dialog],
+#__next-dev-tools,
+.__next-dev-tools,
+.__next-build-status,
+[data-nextjs-turbopack-indicator] {
+  display: none !important;
+}
