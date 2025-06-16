@@ -92,7 +92,7 @@ describe('Integration Tests - Edge Function with Real Config', () => {
         ['accept', 'text/html']
       ]);
       mockRequest = {
-        url: 'https://example.com/old-blog/post-1',
+        url: 'https://edge-redirects-rewrites.contentstackapps.com/old-blog/post-1',
         method: 'GET',
         headers: {
           get: (name) => headersMap.get(name?.toLowerCase()) || null
@@ -102,7 +102,7 @@ describe('Integration Tests - Edge Function with Real Config', () => {
       const result = await handler(mockRequest, mockContext);
 
       expect(result.status).toBe(301);
-      expect(result.url).toBe('https://example.com/blog/post-1');
+      expect(result.headers.get('Location')).toBe('https://edge-redirects-rewrites.contentstackapps.com/blog/post-1');
     });
 
     it('should apply conditional redirect based on query parameter', async () => {
@@ -320,7 +320,7 @@ describe('Integration Tests - Edge Function with Real Config', () => {
         ['authorization', 'Bearer test-token']
       ]);
       mockRequest = {
-        url: 'https://example.com/api/v1/users',
+        url: 'https://edge-redirects-rewrites.contentstackapps.com/api/v1/users',
         method: 'GET',
         headers: {
           get: (name) => headersMap.get(name?.toLowerCase()) || null

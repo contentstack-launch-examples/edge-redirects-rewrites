@@ -272,6 +272,42 @@ describe('edge-redirects', () => {
       expect(result.status).toBe(302);
     });
 
+    it('should skip redirect when already at destination URL', () => {
+      const config = {
+        redirects: [
+          {
+            source: {
+              host: 'example.com',
+              path: '/test-path'
+            },
+            destination: 'https://example.com/test-path',
+            statusCode: 301
+          }
+        ]
+      };
+
+      const result = processRedirects(config, mockRequest);
+      expect(result).toBeNull();
+    });
+
+    it('should skip redirect when relative destination resolves to same URL', () => {
+      const config = {
+        redirects: [
+          {
+            source: {
+              host: 'example.com',
+              path: '/test-path'
+            },
+            destination: '/test-path',
+            statusCode: 301
+          }
+        ]
+      };
+
+      const result = processRedirects(config, mockRequest);
+      expect(result).toBeNull();
+    });
+
     it('should set custom response headers', () => {
       const config = {
         redirects: [

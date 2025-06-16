@@ -20,12 +20,7 @@ vi.mock('../lib/config.js', () => ({
         statusCode: 301
       }
     ],
-    rewrites: [
-      {
-        source: { host: 'example.com', path: '/api/test' },
-        destination: 'https://backend.com/test'
-      }
-    ]
+    rewrites: []
   }
 }));
 
